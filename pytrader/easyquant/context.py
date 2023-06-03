@@ -6,7 +6,7 @@ from typing import List
 from easyquant.quotation import Quotation
 from easytrader.model import Balance, Deal, Entrust, Position
 from easytrader.webtrader import WebTrader
-
+from talib._ta_lib import CCI, RSI
 
 class Context:
     """

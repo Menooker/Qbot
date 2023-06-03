@@ -216,11 +216,11 @@ class JQDataQuotation(Quotation):
         if "date" not in fields:
             fields.append("date")
 
-        cache_key = self._get_cache_key(security, query_dt, unit)
+        cache_key = "002230.XSHE_2022-08-17_1d" #self._get_cache_key(security, query_dt, unit)
 
         if cache_key in self.cache:
             df = self.cache[cache_key]
-            return df[df.index <= end_dt] if "m" in unit else df
+            return df[df.index <= str(end_dt)] #if "m" in unit else df
 
         cache_file = "data/jqdata-%s.csv" % cache_key
 
@@ -228,7 +228,7 @@ class JQDataQuotation(Quotation):
             df = pd.read_csv(cache_file)
             df.index = df.date
             self.cache[cache_key] = df
-            return df[df.index <= end_dt] if "m" in unit else df
+            return df[df.index <= str(end_dt)] #if "m" in unit else df
 
         df = jqdatasdk.get_bars(
             self._format_code(security),
